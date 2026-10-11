@@ -31,9 +31,12 @@ def get_custom_css() -> str:
         --status-info: #0284C7;
     }
 
-    html, body, [class*="css"] {
+    html, body, [class*="css"], [data-testid="stAppViewContainer"], .main {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
         color: var(--text-primary);
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
+        box-sizing: border-box !important;
     }
 
     code, pre, .stCodeBlock, div[data-testid="stCode"] {
@@ -98,21 +101,24 @@ def get_custom_css() -> str:
         min-width: 0;
     }
     .brand-title {
-        font-size: clamp(18px, 4.2vw, 24px);
-        font-weight: 700;
-        letter-spacing: -0.02em;
-        color: #0F172A;
-        margin: 0;
-        line-height: 1.2;
-        word-break: keep-all;
-        white-space: nowrap;
+        font-size: 21px !important;
+        font-weight: 700 !important;
+        letter-spacing: -0.02em !important;
+        color: #0F172A !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 1.25 !important;
+        word-break: normal !important;
+        overflow-wrap: break-word !important;
     }
     .brand-subtitle {
-        font-size: clamp(11px, 2.8vw, 13px);
+        font-size: 12.5px;
         color: #64748B;
         margin: 2px 0 0 0;
         font-weight: 500;
         line-height: 1.35;
+        word-break: normal;
+        overflow-wrap: break-word;
     }
     .brand-badge-wrap {
         flex-shrink: 0;
@@ -385,18 +391,31 @@ def get_custom_css() -> str:
             height: 18px;
         }
         .brand-title {
-            font-size: 19px;
-            letter-spacing: -0.01em;
-            white-space: nowrap;
+            font-size: 17.5px !important;
+            letter-spacing: -0.01em !important;
+            white-space: normal !important;
+            word-break: normal !important;
+            line-height: 1.2 !important;
         }
         .brand-subtitle {
-            font-size: 11px;
-            line-height: 1.3;
+            font-size: 11px !important;
+            line-height: 1.35 !important;
         }
         .brand-badge {
-            font-size: 10px;
-            padding: 2px 7px;
-            letter-spacing: 0.02em;
+            font-size: 10px !important;
+            padding: 2px 7px !important;
+            letter-spacing: 0.02em !important;
+            white-space: nowrap !important;
+        }
+        /* Stack column blocks on mobile to prevent horizontal overflow */
+        div[data-testid="stHorizontalBlock"] {
+            flex-direction: column !important;
+            gap: 8px !important;
+        }
+        div[data-testid="column"] {
+            width: 100% !important;
+            flex: 1 1 100% !important;
+            min-width: 100% !important;
         }
         .welcome-container {
             padding: 1.25rem 1rem !important;
@@ -491,8 +510,8 @@ def render_brand_header():
                 </svg>
             </div>
             <div class="brand-text-wrap">
-                <h1 class="brand-title">PeopleConnect AI</h1>
-                <p class="brand-subtitle">PT IDELOGI INDONESIA &bull; Enterprise Employee Self-Service Platform</p>
+                <div class="brand-title">PeopleConnect AI</div>
+                <div class="brand-subtitle">PT IDELOGI INDONESIA &bull; Enterprise Employee Self-Service Platform</div>
             </div>
         </div>
         <div class="brand-badge-wrap">
