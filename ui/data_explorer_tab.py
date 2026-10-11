@@ -122,7 +122,7 @@ def render_data_explorer_tab():
         # Display table with column configuration
         st.dataframe(
             filtered_df,
-            use_container_width=True,
+            width="stretch",
             hide_index=True
         )
 

@@ -109,7 +109,7 @@ def render_knowledge_base_tab(api_key: str):
         )
 
         if uploaded_file is not None:
-            if st.button(":material/upload_file: Proses & Simpan Dokumen", use_container_width=True, type="primary"):
+            if st.button(":material/upload_file: Proses & Simpan Dokumen", width="stretch", type="primary"):
                 if not api_key:
                     st.warning("Masukkan Google AI API Key di sidebar terlebih dahulu sebelum memproses dokumen.", icon=":material/lock:")
                 else:

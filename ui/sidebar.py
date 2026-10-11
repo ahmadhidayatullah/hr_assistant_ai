@@ -32,7 +32,7 @@ def render_sidebar():
 
         reset_clicked = st.button(
             ":material/add_comment: Percakapan Baru",
-            use_container_width=True,
+            width="stretch",
             type="primary",
             help="Hapus riwayat saat ini dan mulai sesi konsultasi baru"
         )

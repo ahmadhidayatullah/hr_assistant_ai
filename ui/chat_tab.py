@@ -75,7 +75,7 @@ def render_chat_tab():
         with col1:
             if st.button(
                 ":material/beach_access: **Berapa sisa cuti tahunan milik Rian Pratama?**\n\n*Contoh Query Database SQL*",
-                use_container_width=True,
+                width="stretch",
                 key="btn_example_1"
             ):
                 st.session_state.pending_prompt = "Berapa sisa cuti tahunan milik Rian Pratama (EMP-003)?"
@@ -83,7 +83,7 @@ def render_chat_tab():
 
             if st.button(
                 ":material/medical_services: **Berapa plafon klaim kacamata dan apa syaratnya?**\n\n*Contoh Query Dokumen Kebijakan (RAG)*",
-                use_container_width=True,
+                width="stretch",
                 key="btn_example_2"
             ):
                 st.session_state.pending_prompt = "Berapa plafon klaim kacamata untuk karyawan dan apa syarat pengajuannya?"
@@ -92,7 +92,7 @@ def render_chat_tab():
         with col2:
             if st.button(
                 ":material/celebration: **Saya Siti Rahma (EMP-005) mau menikah. Berapa sisa cuti saya dan apa aturan cuti menikah?**\n\n*Contoh Hybrid Query (SQL + RAG)*",
-                use_container_width=True,
+                width="stretch",
                 key="btn_example_3"
             ):
                 st.session_state.pending_prompt = "Saya Siti Rahma (EMP-005). Saya berencana menikah bulan depan. Berapa sisa cuti saya saat ini, dan apakah cuti menikah akan mengurangi kuota cuti tahunan saya?"
@@ -100,7 +100,7 @@ def render_chat_tab():
 
             if st.button(
                 ":material/work: **Bagaimana aturan WFH dan jam kerja inti kantor?**\n\n*Contoh Query Regulasi Kerja*",
-                use_container_width=True,
+                width="stretch",
                 key="btn_example_4"
             ):
                 st.session_state.pending_prompt = "Bagaimana aturan WFH dan jam kerja inti kantor PT IDELOGI INDONESIA?"
