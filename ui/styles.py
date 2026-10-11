@@ -65,8 +65,10 @@ def get_custom_css() -> str:
     /* 5. Custom App Header */
     .brand-header-container {
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
+        gap: 12px;
         padding: 0.75rem 0 1.25rem 0;
         margin-bottom: 1rem;
         border-bottom: 1px solid var(--border-color);
@@ -74,11 +76,15 @@ def get_custom_css() -> str:
     .brand-left {
         display: flex;
         align-items: center;
-        gap: 14px;
+        gap: 12px;
+        flex: 1 1 240px;
+        min-width: 0;
     }
     .brand-logo-icon {
-        width: 44px;
-        height: 44px;
+        width: 42px;
+        height: 42px;
+        min-width: 42px;
+        flex-shrink: 0;
         border-radius: 10px;
         background: linear-gradient(135deg, #0F766E 0%, #115E59 100%);
         display: flex;
@@ -87,21 +93,33 @@ def get_custom_css() -> str:
         color: white;
         box-shadow: 0 4px 10px rgba(15, 118, 110, 0.2);
     }
+    .brand-text-wrap {
+        flex: 1;
+        min-width: 0;
+    }
     .brand-title {
-        font-size: 24px;
+        font-size: clamp(18px, 4.2vw, 24px);
         font-weight: 700;
         letter-spacing: -0.02em;
         color: #0F172A;
         margin: 0;
         line-height: 1.2;
+        word-break: keep-all;
+        white-space: nowrap;
     }
     .brand-subtitle {
-        font-size: 13.5px;
+        font-size: clamp(11px, 2.8vw, 13px);
         color: #64748B;
         margin: 2px 0 0 0;
         font-weight: 500;
+        line-height: 1.35;
+    }
+    .brand-badge-wrap {
+        flex-shrink: 0;
     }
     .brand-badge {
+        display: inline-flex;
+        align-items: center;
         font-size: 11px;
         font-weight: 600;
         padding: 3px 8px;
@@ -109,7 +127,8 @@ def get_custom_css() -> str:
         background-color: #CCFBF1;
         color: #0F766E;
         text-transform: uppercase;
-        letter-spacing: 0.04em;
+        letter-spacing: 0.03em;
+        white-space: nowrap;
     }
 
     /* 6. Tabs Styling */
@@ -337,7 +356,95 @@ def get_custom_css() -> str:
         gap: 10px;
     }
 
-    /* 15. Dark Mode Adaptations */
+    /* 15. Mobile Responsiveness */
+    @media (max-width: 640px) {
+        .main .block-container {
+            padding-left: 0.85rem !important;
+            padding-right: 0.85rem !important;
+            padding-top: 0.85rem !important;
+            padding-bottom: 2rem !important;
+        }
+        .brand-header-container {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 0.5rem 0 0.85rem 0;
+            margin-bottom: 0.75rem;
+        }
+        .brand-left {
+            gap: 10px;
+            width: 100%;
+        }
+        .brand-logo-icon {
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+        }
+        .brand-logo-icon svg {
+            width: 18px;
+            height: 18px;
+        }
+        .brand-title {
+            font-size: 19px;
+            letter-spacing: -0.01em;
+            white-space: nowrap;
+        }
+        .brand-subtitle {
+            font-size: 11px;
+            line-height: 1.3;
+        }
+        .brand-badge {
+            font-size: 10px;
+            padding: 2px 7px;
+            letter-spacing: 0.02em;
+        }
+        .welcome-container {
+            padding: 1.25rem 1rem !important;
+            margin: 1rem auto 1.5rem auto !important;
+        }
+        .welcome-title {
+            font-size: 18px !important;
+        }
+        .welcome-desc {
+            font-size: 13px !important;
+        }
+        .kpi-grid {
+            grid-template-columns: 1fr 1fr !important;
+            gap: 10px !important;
+        }
+        .kpi-card {
+            padding: 0.85rem 0.9rem !important;
+        }
+        .kpi-value {
+            font-size: 20px !important;
+        }
+        .kpi-label {
+            font-size: 11px !important;
+        }
+        div[data-testid="stChatMessage"] {
+            padding: 0.85rem 0.95rem !important;
+            border-radius: 10px !important;
+        }
+    }
+
+    @media (max-width: 360px) {
+        .brand-title {
+            font-size: 16.5px;
+        }
+        .brand-subtitle {
+            font-size: 10px;
+        }
+        .brand-logo-icon {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+        }
+        .kpi-grid {
+            grid-template-columns: 1fr !important;
+        }
+    }
+
+    /* 16. Dark Mode Adaptations */
     @media (prefers-color-scheme: dark) {
         :root {
             --bg-main: #0F172A;
@@ -376,19 +483,19 @@ def render_brand_header():
     <div class="brand-header-container">
         <div class="brand-left">
             <div class="brand-logo-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="3" y="3" width="8" height="8" rx="2" fill="white" fill-opacity="0.95"/>
                     <rect x="13" y="3" width="8" height="8" rx="2" fill="white" fill-opacity="0.6"/>
                     <rect x="3" y="13" width="8" height="8" rx="2" fill="white" fill-opacity="0.6"/>
                     <rect x="13" y="13" width="8" height="8" rx="2" fill="white" fill-opacity="0.95"/>
                 </svg>
             </div>
-            <div>
+            <div class="brand-text-wrap">
                 <h1 class="brand-title">PeopleConnect AI</h1>
                 <p class="brand-subtitle">PT IDELOGI INDONESIA &bull; Enterprise Employee Self-Service Platform</p>
             </div>
         </div>
-        <div>
+        <div class="brand-badge-wrap">
             <span class="brand-badge">Hybrid AI &bull; Production Ready</span>
         </div>
     </div>
